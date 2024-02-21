@@ -6,7 +6,7 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      // required: true,
     },
     email: {
       type: String,
@@ -16,7 +16,7 @@ const userSchema = new Schema(
     },
     lastName: {
       type: String,
-      required: true,
+      // required: true,
     },
     password: {
       type: String,
@@ -29,8 +29,7 @@ const userSchema = new Schema(
         message: "{VALUE} is not a valid gender",
       },
     },
-    age: {
-      type: Date,
+    age: {      type: Date,
     },
     telephone: {
       type: Number,
