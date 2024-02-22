@@ -26,7 +26,7 @@ module.exports = {
       return res.status(401).send({ msg: "Incorrect password" });
     }
     let token = auth.generateToken(user);
-    return res.status(200).send({ msg: "success", data: token });
+    return res.status(200).send({ msg: "success", token: token });
   },
   //TODO: CREATE USER-PROFILE
   // userCreate: async (req, res, next) => {
