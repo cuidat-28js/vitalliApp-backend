@@ -36,6 +36,6 @@ const appointmentSchema = new Schema(
   }
 );
 
-userSchema.plugin(uniqueValidatior);
+appointmentSchema.plugin(uniqueValidatior);
 const Appointment = model("appointment", appointmentSchema);
 module.exports = Appointment;
