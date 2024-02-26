@@ -24,14 +24,15 @@ const appointmentSchema = new Schema(
     adress: {
       type: String,
     },
-    prescription: {
+    medicine: {
       type: String,
     },
-    medicine: {
+    img_recipe: {
       type: String,
     },
   },
   {
+    versionKey:false,
     timestamps: true,
   }
 );

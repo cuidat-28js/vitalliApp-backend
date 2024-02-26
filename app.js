@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3001;
 const routes = require("./routes/index");
 const db = require("./util/db");
 const errorHandler = require("./middlewares/errorHandler");

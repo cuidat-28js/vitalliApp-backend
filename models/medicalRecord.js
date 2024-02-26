@@ -5,37 +5,29 @@ const medicalRecordSchema = new Schema(
   {
     blood_type: {
       type: String,
+      enum: {
+        values: ["O+", "0-", "A+", "A-", "B+", "B-", "AB+", "AB-"],
+        message: "{VALUE} is not a valid blood type",
+      },
     },
-    chronic_deseases: {
-      type: String,
-    },
+    chronic_deseases: [String],
     alergies: {
       type: Array,
     },
-    cardiovascular_deseases: {
+    cardiovascular_deseases: [String],
+    family_related_deseases: [{ name: String, ailment: String }],
+    emergency_contact: [{ name: String, cel: Number }],
+    medicine: [String],
+    comments: {
       type: String,
     },
-    adress: {
-      type: String,
-    },
-    prescription: {
-      type: String,
-    },
-    medicine: {
-      type: String,
-    },
-    medicine: {
-        type: String,
-      },
-      medicine: {
-        type: String,
-      },
   },
   {
+    versionKey: false,
     timestamps: true,
   }
 );
 
-userSchema.plugin(uniqueValidatior);
-const MedicalReord = model("medicalRecord", medicalRecordSchema);
-module.exports = MedicalReord;
+medicalRecordSchema.plugin(uniqueValidatior);
+const MedicalRecord = model("medicalRecord", medicalRecordSchema);
+module.exports = MedicalRecord;

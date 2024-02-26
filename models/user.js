@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 const bcrypt = require("bcrypt");
 const uniqueValidatior = require("mongoose-unique-validator");
 
@@ -29,8 +29,7 @@ const userSchema = new Schema(
         message: "{VALUE} is not a valid gender",
       },
     },
-    age: {      type: Date,
-    },
+    age: { type: Date },
     telephone: {
       type: Number,
     },
@@ -40,8 +39,15 @@ const userSchema = new Schema(
     adress: {
       type: String,
     },
+    appointment_id:{
+      type: mongoose.Types.ObjectId
+    },
+    medicalrecord_id:{
+      type: mongoose.Types.ObjectId
+    }
   },
   {
+    versionKey: false,
     timestamps: true,
     statics: {
       encrypPassword: async (password) => {

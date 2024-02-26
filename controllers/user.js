@@ -29,16 +29,29 @@ module.exports = {
     return res.status(200).send({ msg: "success", token: token });
   },
   //TODO: CREATE USER-PROFILE
-  // userCreate: async (req, res, next) => {
-  //   try {
-  //     let user = await User.create(req.body);
-  //     if (!user) {
-  //       res.status(502).send({ msg: "user not created", err: user });
-  //     }
-  //     await user.save();
-  //     res.status(201).send({ msg: "user created", data: user });
-  //   } catch (error) {
-  //     next(error, req, res);
-  //   }
-  // }
+  // createProfile: async (req, res, next) => {
+  //   const resultado = await User.aggregate(
+  //     [
+  //       {
+  //         $lookup:
+  //         {
+  //           from: 'appointment',
+  //           localField: 'appointment_id',
+  //           foreignField: '_id',
+  //           as:'appointment_id_new'
+  //         }
+  //       }
+  //     ]
+  //   )
+    // try {
+    //   let user = await User.create(req.body);
+    //   if (!user) {
+    //     res.status(502).send({ msg: "user not created", err: user });
+    //   }
+    //   await user.save();
+    //   res.status(201).send({ msg: "user created", data: user });
+    // } catch (error) {
+    //   next(error, req, res);
+    // }
+ // },
 };
