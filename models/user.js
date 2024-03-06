@@ -1,5 +1,4 @@
 const { Schema, model, default: mongoose } = require("mongoose");
-const bcrypt = require("bcrypt");
 const uniqueValidatior = require("mongoose-unique-validator");
 
 const userSchema = new Schema(
@@ -49,22 +48,6 @@ const userSchema = new Schema(
   {
     versionKey: false,
     timestamps: true,
-    statics: {
-      encrypPassword: async (password) => {
-        if (
-          !password.match(
-            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-          )
-        ) {
-          throw new Error("password not valid");
-        }
-        const salt = await bcrypt.genSalt(15);
-        return await bcrypt.hash(password, salt);
-      },
-      comparePassword: async (password, hash) => {
-        return await bcrypt.compare(password, hash);
-      },
-    },
   }
 );
 
