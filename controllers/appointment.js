@@ -2,6 +2,19 @@ const { error } = require("console");
 const Appointment = require("../models/appointment");
 
 module.exports = {
+  getAppointments: async (req, res) => {
+    try {
+      const appointments = await Appointment.find({});
+      res.json({
+        msg: "appointment list",
+        data: {
+          appointments,
+        },
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createAppointment: async (req, res, next) => {
     try {
       let appointment = await Appointment.create(req.body);

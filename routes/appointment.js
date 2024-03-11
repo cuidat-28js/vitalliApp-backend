@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const appointmentController = require("../controllers/appointment");
 
+router.get("/", appointmentController.getAppointments);
+
 router.post("/create", appointmentController.createAppointment);
 
 router.patch("/edit/:id", appointmentController.updateAppointment);
