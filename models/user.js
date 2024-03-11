@@ -3,9 +3,11 @@ const uniqueValidatior = require("mongoose-unique-validator");
 
 const userSchema = new Schema(
   {
+    medicalrecord_id:{
+      type: mongoose.Types.ObjectId
+    },
     name: {
       type: String,
-      // required: true,
     },
     email: {
       type: String,
@@ -15,7 +17,6 @@ const userSchema = new Schema(
     },
     lastName: {
       type: String,
-      // required: true,
     },
     password: {
       type: String,
@@ -24,7 +25,7 @@ const userSchema = new Schema(
     gender: {
       type: String,
       enum: {
-        values: ["Male", "Female"],
+        values: ["Masculino", "Femenino"],
         message: "{VALUE} is not a valid gender",
       },
     },
@@ -37,12 +38,6 @@ const userSchema = new Schema(
     },
     adress: {
       type: String,
-    },
-    appointment_id:{
-      type: mongoose.Types.ObjectId
-    },
-    medicalrecord_id:{
-      type: mongoose.Types.ObjectId
     }
   },
   {
