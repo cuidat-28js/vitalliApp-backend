@@ -42,4 +42,21 @@ module.exports = {
       next(error, req, res);
     }
   },
+  getMRById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(400).send({ msg: "id invalid" });
+      }
+      const medicalRecord = await MedicalRecord.findById(id);
+      res.json({
+        msg: "medical record",
+        data: {
+          medicalRecord,
+        },
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
 };
