@@ -25,7 +25,9 @@ module.exports = {
       const newData = req.body;
 
       if (!id || !newData) {
-        res.status(404).send({ msg: "medical record id not found", err: error });
+        res
+          .status(404)
+          .send({ msg: "medical record id not found", err: error });
       }
       const medicalRecordUpdated = await MedicalRecord.findByIdAndUpdate(
         id,

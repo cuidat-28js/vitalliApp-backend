@@ -1,8 +1,11 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 const uniqueValidatior = require("mongoose-unique-validator");
 
 const appointmentSchema = new Schema(
   {
+    user_id:{
+    type: mongoose.Types.ObjectId
+    },
     date: {
       type: Date,
     },

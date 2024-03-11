@@ -3,17 +3,30 @@ const auth = require("../middlewares/auth");
 const encrypt = require("../lib/encrypt");
 
 module.exports = {
+  getUsers: async (req, res) => {
+    try {
+      const users = await User.find({});
+      res.json({
+        msg: "users list",
+        data: {
+          users,
+        },
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
+
   register: async (req, res, next) => {
     try {
-
-      // if (req.body.email) {
-      //   res.status(400).send({ msg: "Password is required" });
-      //   return;
-      // }
+      const { email } = await req.body;
+      let userEmail = (await User.findOne({ email })) || null;
+      if (userEmail !== null) {
+        return res.status(400).send({ msg: "Error, email exist" });
+      }
 
       if (!req.body.password) {
-        res.status(400).send({ msg: "Password is required" });
-        return;
+        return res.status(400).send({ msg: "Password is required" });
       }
 
       let password = await req.body.password.toString();
@@ -32,8 +45,7 @@ module.exports = {
 
       let user = await User.create(req.body);
       if (!user) {
-        res.status(502).send({ msg: "user not created", err: user });
-        return;
+        return res.status(502).send({ msg: "user not created", err: user });
       }
       await user.save();
       return res.status(201).send({ msg: "user created", data: user });
@@ -41,7 +53,6 @@ module.exports = {
       next(error, req, res);
     }
   },
-
 
   login: async (req, res) => {
     const { email, password } = req.body;
@@ -56,30 +67,25 @@ module.exports = {
     let token = auth.generateToken(user);
     return res.status(200).send({ msg: "success", token: token });
   },
-  //TODO: CREATE USER-PROFILE
-  // createProfile: async (req, res, next) => {
-  //   const resultado = await User.aggregate(
-  //     [
-  //       {
-  //         $lookup:
-  //         {
-  //           from: 'appointment',
-  //           localField: 'appointment_id',
-  //           foreignField: '_id',
-  //           as:'appointment_id_new'
-  //         }
-  //       }
-  //     ]
-  //   )
-  // try {
-  //   let user = await User.create(req.body);
-  //   if (!user) {
-  //     res.status(502).send({ msg: "user not created", err: user });
-  //   }
-  //   await user.save();
-  //   res.status(201).send({ msg: "user created", data: user });
-  // } catch (error) {
-  //   next(error, req, res);
-  // }
-  // },
+
+  editProfile: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const newData = req.body;
+
+      if (!id || !newData) {
+        res.status(404).send({ msg: "user id not found", err: error });
+      }
+      const userUpdated = await User.findByIdAndUpdate(id, newData, {
+        new: true,
+      });
+      await userUpdated.save();
+      res
+        .status(200)
+        .send({ msg: "medical record updated", data: userUpdated });
+    } catch (error) {
+      console.log("errorrrrrr");
+      next(error, req, res);
+    }
+  },
 };
