@@ -4,7 +4,9 @@ const Appointment = require("../models/appointment");
 module.exports = {
   getAppointments: async (req, res) => {
     try {
-      const appointments = await Appointment.find({});
+      const appointments = await Appointment.find({
+        user: req.user.id,
+      });
       res.json({
         msg: "appointment list",
         data: {
@@ -15,9 +17,49 @@ module.exports = {
       res.status(400).send({ msg: error.message });
     }
   },
+  getAppointmentById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(400).send({ msg: "id invalid" });
+      }
+      const user = await Appointment.findById(id);
+      res.json({
+        msg: "user",
+        data: {
+          user,
+        },
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createAppointment: async (req, res, next) => {
     try {
-      let appointment = await Appointment.create(req.body);
+      const {
+        date,
+        type_of_specilist,
+        doctors_name,
+        symptoms,
+        cost,
+        diagnosis,
+        adress,
+        medicine,
+        img_recipe,
+      } = req.body;
+
+      let appointment = await Appointment.create({
+        user_id: req.user,
+        date,
+        type_of_specilist,
+        doctors_name,
+        symptoms,
+        cost,
+        diagnosis,
+        adress,
+        medicine,
+        img_recipe,
+      });
       if (!appointment) {
         res
           .status(502)

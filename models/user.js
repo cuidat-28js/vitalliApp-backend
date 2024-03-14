@@ -3,9 +3,6 @@ const uniqueValidatior = require("mongoose-unique-validator");
 
 const userSchema = new Schema(
   {
-    medicalrecord_id:{
-      type: mongoose.Types.ObjectId
-    },
     name: {
       type: String,
     },

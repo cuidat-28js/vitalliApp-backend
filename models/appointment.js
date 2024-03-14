@@ -4,7 +4,9 @@ const uniqueValidatior = require("mongoose-unique-validator");
 const appointmentSchema = new Schema(
   {
     user_id:{
-    type: mongoose.Types.ObjectId
+    require: true,
+    type: mongoose.Types.ObjectId,
+    ref: 'User'
     },
     date: {
       type: Date,

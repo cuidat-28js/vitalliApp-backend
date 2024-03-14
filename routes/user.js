@@ -5,10 +5,8 @@ const auth = require("../middlewares/auth");
 
 router.get("/", userController.getUsers);
 
-router.patch("/editProfile/:id", userController.editProfile);
+router.patch("/editProfile",[auth.authToken] ,userController.editProfile);
 
-router.get("/:id", userController.getUserById);
-
-// router.post("/create-profile", userController.userCreate);
+router.get("/profile",[auth.authToken], userController.getUserById);
 
 module.exports = router;

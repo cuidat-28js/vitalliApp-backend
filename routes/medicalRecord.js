@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const medicalRecordController = require("../controllers/medicalRecord");
+const auth = require("../middlewares/auth");
 
-router.post("/create", medicalRecordController.createMedicalRecord);
+router.post("/create",[auth.authToken], medicalRecordController.createMedicalRecord);
 
-router.patch("/edit/:id", medicalRecordController.updateMedicalRecord);
+router.patch("/edit:id",[auth.authToken], medicalRecordController.updateMedicalRecord);
 
-router.get("/:id", medicalRecordController.getMRById);
+router.get("/:id",[auth.authToken], medicalRecordController.getMRById);
 
 module.exports = router;

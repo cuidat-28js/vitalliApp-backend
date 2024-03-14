@@ -4,7 +4,27 @@ const MedicalRecord = require("../models/medicalRecord");
 module.exports = {
   createMedicalRecord: async (req, res, next) => {
     try {
-      let medicalRecord = await MedicalRecord.create(req.body);
+      const {
+        blood_type,
+        chronic_deseases,
+        alergies,
+        cardiovascular_deseases,
+        family_related_deseases,
+        emergency_contact,
+        medicine,
+        comments,
+      } = req.body;
+      let medicalRecord = await MedicalRecord.create({
+        user_id: req.user.id,
+        blood_type,
+        chronic_deseases,
+        alergies,
+        cardiovascular_deseases,
+        family_related_deseases,
+        emergency_contact,
+        medicine,
+        comments,
+      });
       if (!medicalRecord) {
         res
           .status(502)
