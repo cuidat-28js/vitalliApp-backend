@@ -34,7 +34,9 @@ module.exports = {
         return res.status(502).send({ msg: "user not created", err: user });
       }
       await user.save();
-      return res.status(201).send({ msg: "user created", data: user });
+      let token = auth.generateToken(user._id);
+      res.cookie('token', token);
+      return res.status(201).send({ msg: "user created", data:{user} });
     } catch (error) {
       next(error, req, res);
     }
@@ -50,7 +52,15 @@ module.exports = {
     if (!validPass) {
       return res.status(401).send({ msg: "Incorrect password" });
     }
-    let token = auth.generateToken(user);
+    let token = auth.generateToken(user._id);
+    res.cookie('token', token);
     return res.status(200).send({ msg: "success", token: token });
   },
+
+  logout: async(req, res) =>  {
+    res.cookie('token', ' ', {
+      expires: new Date(0),
+    });
+    return res.status(200).send({msg: "logout"})
+  }
 };

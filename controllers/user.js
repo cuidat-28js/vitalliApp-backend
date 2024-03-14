@@ -18,7 +18,7 @@ module.exports = {
   },
   editProfile: async (req, res, next) => {
     try {
-      const { id } = req.params;
+      const { id } = req.user;
       const newData = req.body;
 
       if (!id || !newData) {
@@ -30,7 +30,7 @@ module.exports = {
       await userUpdated.save();
       res
         .status(200)
-        .send({ msg: "medical record updated", data: userUpdated });
+        .send({ msg: "profile updated", data: userUpdated });
     } catch (error) {
       console.log("errorrrrrr");
       next(error, req, res);
@@ -39,7 +39,7 @@ module.exports = {
 
   getUserById: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.user;
       if (!id.match(/^[0-9a-fA-F]{24}$/)) {
         return res.status(400).send({ msg: "id invalid" });
       }

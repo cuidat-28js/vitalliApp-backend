@@ -1,8 +1,13 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 const uniqueValidatior = require("mongoose-unique-validator");
 
 const medicalRecordSchema = new Schema(
   {
+    user_id:{
+      require: true,
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+      },
     blood_type: {
       type: String,
       enum: {
