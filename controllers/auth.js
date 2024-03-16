@@ -35,8 +35,8 @@ module.exports = {
       }
       await user.save();
       let token = auth.generateToken(user._id);
-      res.cookie('token', token);
-      return res.status(201).send({ msg: "user created", data:{user} });
+      // res.cookie('token', token);
+      return res.status(201).send({ msg: "user created", data:{user, token} });
     } catch (error) {
       next(error, req, res);
     }
@@ -54,13 +54,13 @@ module.exports = {
     }
     let token = auth.generateToken(user._id);
     res.cookie('token', token);
-    return res.status(200).send({ msg: "success", token: token });
+    return res.status(200).send({ msg: "success", user, token });
   },
 
-  logout: async(req, res) =>  {
-    res.cookie('token', ' ', {
-      expires: new Date(0),
-    });
-    return res.status(200).send({msg: "logout"})
-  }
+  // logout: async(req, res) =>  {
+  //   res.cookie('token', ' ', {
+  //     expires: new Date(0),
+  //   });
+  //   return res.status(200).send({msg: "logout"})
+  // }
 };
