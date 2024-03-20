@@ -22,11 +22,11 @@ const userSchema = new Schema(
     gender: {
       type: String,
       enum: {
-        values: ["Masculino", "Femenino"],
+        values: ["Hombre", "Mujer"],
         message: "{VALUE} is not a valid gender",
       },
     },
-    age: { type: Date },
+    age: { type: Number },
     telephone: {
       type: Number,
     },
@@ -34,6 +34,9 @@ const userSchema = new Schema(
       type: Date,
     },
     adress: {
+      type: String,
+    },
+    picture: {
       type: String,
     }
   },

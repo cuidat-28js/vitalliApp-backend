@@ -4,9 +4,11 @@ const Appointment = require("../models/appointment");
 module.exports = {
   getAppointments: async (req, res) => {
     try {
+      console.log(req.user._id, 'user id')
       const appointments = await Appointment.find({
         user: req.user.id,
       });
+      console.log(appointments)
       res.json({
         msg: "appointment list",
         data: {
