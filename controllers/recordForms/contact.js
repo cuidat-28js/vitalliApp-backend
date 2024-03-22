@@ -1,5 +1,5 @@
 const { error } = require("console");
-const ContactRecord = require("../models/recordForms/contactRecord");
+const ContactRecord = require("../models/contactRecord");
 
 module.exports = {
   createContactRecord: async (req, res, next) => {

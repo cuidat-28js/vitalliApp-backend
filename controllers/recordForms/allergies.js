@@ -1,5 +1,5 @@
 const { error } = require("console");
-const AllergiesRecord = require("../models/recordForms/allergiesRecord");
+const AllergiesRecord = require("../models/allergiesRecord");
 
 module.exports = {
   createAllergiesRecord: async (req, res, next) => {
