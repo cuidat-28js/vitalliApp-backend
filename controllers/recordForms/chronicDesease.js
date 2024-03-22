@@ -1,5 +1,5 @@
 const { error } = require("console");
-const ChronicDeseaseRecord = require("../models/chronicDeseaseRecord");
+const ChronicDeseaseRecord = require("../models/recordForms/chronicDeseaseRecord");
 
 module.exports = {
   createChronicDeseaseRecord: async (req, res, next) => {
