@@ -3,10 +3,10 @@ const uniqueValidatior = require("mongoose-unique-validator");
 
 const appointmentSchema = new Schema(
   {
-    user_id:{
-    require: true,
-    type: mongoose.Types.ObjectId,
-    ref: 'User'
+    user_id: {
+      require: true,
+      type: mongoose.Types.ObjectId,
+      ref: "User",
     },
     date: {
       type: Date,
@@ -23,21 +23,25 @@ const appointmentSchema = new Schema(
     cost: {
       type: Number,
     },
+    label: {
+      type: String,
+    },
     diagnosis: {
       type: String,
     },
-    adress: {
-      type: String,
-    },
+
     medicine: {
       type: String,
     },
     img_recipe: {
       type: String,
     },
+    adress: {
+      type: String,
+    },
   },
   {
-    versionKey:false,
+    versionKey: false,
     timestamps: true,
   }
 );

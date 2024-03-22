@@ -20,13 +20,16 @@ module.exports = {
     try {
       const { id } = req.user;
       const newData = req.body;
+      console.log(newData, 'new data')
 
       if (!id || !newData) {
         res.status(404).send({ msg: "user id not found", err: error });
       }
+      console.log(id, 'ID')
       const userUpdated = await User.findByIdAndUpdate(id, newData, {
         new: true,
       });
+      console.log(userUpdated, 'user updated')
       await userUpdated.save();
       res
         .status(200)

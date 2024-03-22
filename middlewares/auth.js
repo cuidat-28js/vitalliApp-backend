@@ -5,12 +5,15 @@ const User = require("../models/user");
 module.exports = {
   generateToken: (user) => {
     delete user.password;
-    return jwt.sign({ user: user._id }, JWT_SECRET, { expiresIn: 86400 });
+    return jwt.sign({ user: user._id }, JWT_SECRET, { expiresIn: 3600 });
   },
+  // refreshToken: (user) => {
+  //   delete user.password;
+  //   return jwt.sign({ user: user._id }, JWT_SECRET, { expiresIn: 86400 });
+  // },
   authToken: async (req, res, next) => {
     const header = req.header("Authorization") || "";
     const token = header.split(" ")[1];
-    // const { token } = req.cookies;
     if (!token) return res.status(401).send({ msg: "Not autorized" });
     jwt.verify(token, JWT_SECRET, async (err, payload) => {
       if (err) {

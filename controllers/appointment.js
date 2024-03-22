@@ -4,16 +4,14 @@ const Appointment = require("../models/appointment");
 module.exports = {
   getAppointments: async (req, res) => {
     try {
-      console.log(req.user._id, 'user id')
+      console.log(req.user.id, "user id");
       const appointments = await Appointment.find({
-        user: req.user.id,
+        user_id: req.user.id,
       });
-      console.log(appointments)
+      console.log(appointments);
       res.json({
         msg: "appointment list",
-        data: {
-          appointments,
-        },
+        appointments,
       });
     } catch (error) {
       res.status(400).send({ msg: error.message });
@@ -44,6 +42,7 @@ module.exports = {
         doctors_name,
         symptoms,
         cost,
+        label,
         diagnosis,
         adress,
         medicine,
@@ -58,6 +57,7 @@ module.exports = {
         symptoms,
         cost,
         diagnosis,
+        label,
         adress,
         medicine,
         img_recipe,
