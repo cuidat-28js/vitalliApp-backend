@@ -1,5 +1,5 @@
 const { error } = require("console");
-const FamilyHistoryRecord = require("../models/recordForms/familyHistoryRecord");
+const FamilyHistoryRecord = require("../models/familyHistoryRecord");
 
 module.exports = {
   createFamilyHistoryRecord: async (req, res, next) => {
