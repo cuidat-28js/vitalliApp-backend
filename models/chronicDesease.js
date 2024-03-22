@@ -19,6 +19,6 @@ const chronicDeseaseRecordSchema = new Schema(
   }
 );
 
-medicalRecordSchema.plugin(uniqueValidatior);
+chronicDeseaseRecordSchema.plugin(uniqueValidatior);
 const ChronicDeseaseRecord = model("chronicDeseaseRecord", chronicDeseaseRecordSchema);
 module.exports = ChronicDeseaseRecord;

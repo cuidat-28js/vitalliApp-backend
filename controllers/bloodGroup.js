@@ -1,5 +1,5 @@
 const { error } = require("console");
-const BloodGroupRecord = require("../models/recordForms/bloodGroupRecord");
+const BloodGroupRecord = require("../models/bloodGroupRecord");
 
 module.exports = {
   createBloodGroupRecord: async (req, res, next) => {
