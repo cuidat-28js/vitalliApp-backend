@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 
 router.post("/create",[auth.authToken], medicalRecordController.createMedicalRecord);
 
-router.patch("/edit:id",[auth.authToken], medicalRecordController.updateMedicalRecord);
+router.patch("/edit/:id",[auth.authToken], medicalRecordController.updateMedicalRecord);
 
 router.get("/:id",[auth.authToken], medicalRecordController.getMRById);
 

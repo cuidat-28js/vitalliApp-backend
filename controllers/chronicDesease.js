@@ -1,12 +1,10 @@
 const { error } = require("console");
-const ChronicDeseaseRecord = require("../models/chronicDeseaseRecord");
+const ChronicDeseaseRecord = require("../models/chronicDesease");
 
 module.exports = {
   createChronicDeseaseRecord: async (req, res, next) => {
     try {
-      const {
-        chronicDesease,
-      } = req.body;
+      const { chronicDesease } = req.body;
       let chronicDeseaseRecord = await ChronicDeseaseRecord.create({
         user_id: req.user.id,
         chronicDesease,
@@ -14,12 +12,18 @@ module.exports = {
       if (!chronicDeseaseRecord) {
         res
           .status(502)
-          .send({ msg: "chronic desease record not created", err: chronicDeseaseRecord });
+          .send({
+            msg: "chronic desease record not created",
+            err: chronicDeseaseRecord,
+          });
       }
       await chronicDeseaseRecord.save();
       res
         .status(201)
-        .send({ msg: "chronic desease record created", data: chronicDeseaseRecord });
+        .send({
+          msg: "chronic desease record created",
+          data: chronicDeseaseRecord,
+        });
     } catch (error) {
       next(error, req, res);
     }
@@ -35,15 +39,17 @@ module.exports = {
           .status(404)
           .send({ msg: "chronic desease record id not found", err: error });
       }
-      const chronicDeseaseRecordUpdated = await ChronicDeseaseRecord.findByIdAndUpdate(
-        id,
-        newData,
-        { new: true }
-      );
+      const chronicDeseaseRecordUpdated =
+        await ChronicDeseaseRecord.findByIdAndUpdate(id, newData, {
+          new: true,
+        });
       await chronicDeseaseRecordUpdated.save();
       res
         .status(200)
-        .send({ msg: "chronic desease record updated", data: chronicDeseaseRecordUpdated });
+        .send({
+          msg: "chronic desease record updated",
+          data: chronicDeseaseRecordUpdated,
+        });
     } catch (error) {
       next(error, req, res);
     }
