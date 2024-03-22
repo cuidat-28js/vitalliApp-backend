@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bloodGroupRecordController = require("../controllers/recordForms/bloodGroup");
+const bloodGroupRecordController = require("../controllers/bloodGroup");
 const auth = require("../middlewares/auth");
 
 router.post("/create",[auth.authToken], bloodGroupRecordController.createBloodGroupRecord);

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const familyHistoryRecordController = require("../controllers/recordForms/familyHistory");
+const familyHistoryRecordController = require("../controllers/familyHistory");
 const auth = require("../middlewares/auth");
 
 router.post("/create",[auth.authToken], familyHistoryRecordController.createFamilyHistoryRecord);

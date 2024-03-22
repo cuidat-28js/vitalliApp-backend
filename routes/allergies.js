@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const allergiesRecordController = require("../controllers/recordForms/allergies");
+const allergiesRecordController = require("../controllers/allergies");
 const auth = require("../middlewares/auth");
 
 router.post("/create",[auth.authToken], allergiesRecordController.createAllergiasRecord);
