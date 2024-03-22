@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT;
 const routes = require("./routes/index");
 const db = require("./util/db");
 const errorHandler = require("./middlewares/errorHandler");
@@ -18,6 +18,6 @@ db.connect();
 app.use(routes);
 app.use(errorHandler.errorHandler);
 
-app.listen(port, () => {
-  console.log("Server listening in port " + port);
+app.listen(PORT, () => {
+  console.log("Server listening in port " + PORT);
 });
