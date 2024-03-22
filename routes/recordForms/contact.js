@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], contactRecordController.createContactRec
 
 router.patch("/edit:id",[auth.authToken], contactRecordController.updateContactRecord);
 
-router.get("/:id",[auth.authToken], contactRecordController.getMRById);
+router.get("/:id",[auth.authToken], contactRecordController.getContactById);
 
 module.exports = router;

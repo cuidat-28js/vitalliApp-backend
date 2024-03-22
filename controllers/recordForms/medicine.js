@@ -48,7 +48,7 @@ module.exports = {
       next(error, req, res);
     }
   },
-  getMRById: async (req, res) => {
+  getMedicineById: async (req, res) => {
     try {
       const { id } = req.params;
       if (!id.match(/^[0-9a-fA-F]{24}$/)) {

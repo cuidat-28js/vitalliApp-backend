@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], familyHistoryRecordController.createFami
 
 router.patch("/edit:id",[auth.authToken], familyHistoryRecordController.updateFamilyHistoryRecord);
 
-router.get("/:id",[auth.authToken], familyHistoryRecordController.getMRById);
+router.get("/:id",[auth.authToken], familyHistoryRecordController.getFamilyById);
 
 module.exports = router;

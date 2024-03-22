@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], bloodGroupRecordController.createBloodGr
 
 router.patch("/edit:id",[auth.authToken], bloodGroupRecordController.updateBloodGroupRecord);
 
-router.get("/:id",[auth.authToken], bloodGroupRecordController.getMRById);
+router.get("/:id",[auth.authToken], bloodGroupRecordController.getBloodById);
 
 module.exports = bloodGroup

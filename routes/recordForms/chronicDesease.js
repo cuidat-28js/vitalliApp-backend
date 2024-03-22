@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], chronicDeseaseRecordController.createChr
 
 router.patch("/edit:id",[auth.authToken], chronicDeseaseRecordController.updateChronicDeseaseRecord);
 
-router.get("/:id",[auth.authToken], chronicDeseaseRecordController.getMRById);
+router.get("/:id",[auth.authToken], chronicDeseaseRecordController.getChronicById);
 
 module.exports = router;

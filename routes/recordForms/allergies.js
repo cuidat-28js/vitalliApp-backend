@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], allergiesRecordController.createAllergia
 
 router.patch("/edit:id",[auth.authToken],allergieslRecordController.updateAllergiasRecord);
 
-router.get("/:id",[auth.authToken], allergiesRecordController.getMRById);
+router.get("/:id",[auth.authToken], allergiesRecordController.getAllergiesById);
 
 module.exports = router;

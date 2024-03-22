@@ -7,6 +7,6 @@ router.post("/create",[auth.authToken], medicineRecordController.createMedicineR
 
 router.patch("/edit:id",[auth.authToken], medicineRecordController.updateMedicineRecord);
 
-router.get("/:id",[auth.authToken], medicineRecordController.getMRById);
+router.get("/:id",[auth.authToken], medicineRecordController.getMedicineById);
 
 module.exports = router;
