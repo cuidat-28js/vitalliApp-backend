@@ -9,4 +9,6 @@ router.patch("/edit/:id",[auth.authToken], contactRecordController.updateContact
 
 router.get("/:id",[auth.authToken], contactRecordController.getContactById);
 
+router.get("/",[auth.authToken], contactRecordController.getContact);
+
 module.exports = router;

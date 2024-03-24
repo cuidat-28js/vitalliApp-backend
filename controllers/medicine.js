@@ -2,6 +2,21 @@ const { error } = require("console");
 const MedicineRecord = require("../models/medicineRecord");
 
 module.exports = {
+  getMedicine: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const medicines = await MedicineRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(medicines);
+      res.json({
+        msg: "medicines list",
+        medicines,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createMedicineRecord: async (req, res, next) => {
     try {
       const {

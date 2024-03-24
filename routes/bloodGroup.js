@@ -17,4 +17,6 @@ router.patch(
 
 router.get("/:id", [auth.authToken], bloodGroupRecordController.getBloodById);
 
+router.get("/", [auth.authToken], bloodGroupRecordController.getBloodGroup);
+
 module.exports = router;

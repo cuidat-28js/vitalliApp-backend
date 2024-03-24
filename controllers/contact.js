@@ -2,14 +2,29 @@ const { error } = require("console");
 const ContactRecord = require("../models/contactRecord");
 
 module.exports = {
+  getContact: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const contact = await ContactRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(contact);
+      res.json({
+        msg: "contact list",
+        contact,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createContactRecord: async (req, res, next) => {
     try {
       const {
-        contact,
+        emergency_contact,
       } = req.body;
       let contactRecord = await ContactRecord.create({
         user_id: req.user.id,
-        contact,
+        emergency_contact,
       });
       if (!contactRecord) {
         res
@@ -19,7 +34,7 @@ module.exports = {
       await contactRecord.save();
       res
         .status(201)
-        .send({ msg: "contact record created", data: contactRecord });
+        .send({ msg: "contact record created", contactRecord });
     } catch (error) {
       next(error, req, res);
     }

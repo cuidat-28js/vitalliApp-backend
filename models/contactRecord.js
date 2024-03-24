@@ -9,7 +9,7 @@ const emergencyContactRecordSchema = new Schema(
       ref: 'User'
       },
     
-    emergency_contact: [{ name: String, cel: Number }],
+    emergency_contact: { name: String, cel: Number },
     
   },
   {

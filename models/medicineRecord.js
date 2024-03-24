@@ -9,7 +9,7 @@ const medicineRecordSchema = new Schema(
       ref: 'User'
       },
     medicine: {
-      type: Array,
+      type: String,
     },
     
   },

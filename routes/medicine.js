@@ -9,4 +9,6 @@ router.patch("/edit/:id",[auth.authToken], medicineRecordController.updateMedici
 
 router.get("/:id",[auth.authToken], medicineRecordController.getMedicineById);
 
+router.get("/",[auth.authToken], medicineRecordController.getMedicine);
+
 module.exports = router;

@@ -9,7 +9,7 @@ const allergiesRecordSchema = new Schema(
       ref: 'User'
       },
     allergies: {
-      type: Array,
+      type: String,
     },
     
   },
