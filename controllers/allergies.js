@@ -2,6 +2,21 @@ const { error } = require("console");
 const AllergiesRecord = require("../models/allergiesRecord");
 
 module.exports = {
+  getAllergies: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const allergies = await AllergiesRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(allergies);
+      res.json({
+        msg: "allergies list",
+        allergies,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createAllergiesRecord: async (req, res, next) => {
     try {
       const {
@@ -17,6 +32,7 @@ module.exports = {
           .send({ msg: "allergies record not created", err: allergiesRecord });
       }
       await allergiesRecord.save();
+      console.log(allergiesRecord);
       res
         .status(201)
         .send({ msg: "allergies record created", data: allergiesRecord });

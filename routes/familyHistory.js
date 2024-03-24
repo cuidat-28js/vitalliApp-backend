@@ -21,4 +21,10 @@ router.get(
   familyHistoryRecordController.getFamilyById
 );
 
+router.get(
+  "/",
+  [auth.authToken],
+  familyHistoryRecordController.getFamilyHistory
+);
+
 module.exports = router;

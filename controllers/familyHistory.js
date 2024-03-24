@@ -2,14 +2,29 @@ const { error } = require("console");
 const FamilyHistoryRecord = require("../models/familyHistoryRecord");
 
 module.exports = {
+  getFamilyHistory: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const familyHistory = await FamilyHistoryRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(familyHistory);
+      res.json({
+        msg: "family history list",
+        familyHistory,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createFamilyHistoryRecord: async (req, res, next) => {
     try {
       const {
-        familyHistory,
+        family_related_deseases,
       } = req.body;
       let familyHistoryRecord = await FamilyHistoryRecord.create({
         user_id: req.user.id,
-        familyHistory,
+        family_related_deseases,
       });
       if (!familyHistoryRecord) {
         res
@@ -19,7 +34,7 @@ module.exports = {
       await familyHistoryRecord.save();
       res
         .status(201)
-        .send({ msg: "family history record created", data: familyHistoryRecord });
+        .send({ msg: "family history record created", familyHistoryRecord });
     } catch (error) {
       next(error, req, res);
     }

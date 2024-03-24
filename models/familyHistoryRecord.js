@@ -8,7 +8,7 @@ const familyHistoryRecordSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User'
       },
-    family_related_deseases: [{ name: String, ailment: String }],
+    family_related_deseases: { name: String, ailment: String },
   },
   {
     versionKey: false,

@@ -2,6 +2,21 @@ const { error } = require("console");
 const ChronicDeseaseRecord = require("../models/chronicDesease");
 
 module.exports = {
+  getChronicDesease: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const chronicDesease = await ChronicDeseaseRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(chronicDesease);
+      res.json({
+        msg: "chronicDesease list",
+        chronicDesease,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createChronicDeseaseRecord: async (req, res, next) => {
     try {
       const { chronicDesease } = req.body;

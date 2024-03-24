@@ -9,7 +9,7 @@ const chronicDeseaseRecordSchema = new Schema(
       ref: 'User'
       },
     chronicDesease: {
-      type: Array,
+      type: String,
     },
     
   },

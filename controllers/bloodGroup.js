@@ -2,14 +2,29 @@ const { error } = require("console");
 const BloodGroupRecord = require("../models/bloodGroupRecord");
 
 module.exports = {
+  getBloodGroup: async (req, res) => {
+    try {
+      console.log(req.user.id, "user id");
+      const bloodGroup = await BloodGroupRecord.find({
+        user_id: req.user.id,
+      });
+      console.log(bloodGroup);
+      res.json({
+        msg: "blood group",
+        bloodGroup,
+      });
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  },
   createBloodGroupRecord: async (req, res, next) => {
     try {
       const {
-        bloodGroup,
+        blood_type,
       } = req.body;
       let bloodGroupRecord = await BloodGroupRecord.create({
         user_id: req.user.id,
-        bloodGroup,
+        blood_type,
       });
       if (!bloodGroupRecord) {
         res
@@ -19,7 +34,7 @@ module.exports = {
       await bloodGroupRecord.save();
       res
         .status(201)
-        .send({ msg: "blood group record created", data: bloodGroupRecord });
+        .send({ msg: "blood group record created",  bloodGroupRecord });
     } catch (error) {
       next(error, req, res);
     }

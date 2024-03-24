@@ -9,4 +9,6 @@ router.patch("/edit/:id",[auth.authToken], chronicDeseaseRecordController.update
 
 router.get("/:id",[auth.authToken], chronicDeseaseRecordController.getChronicById);
 
+router.get("/",[auth.authToken], chronicDeseaseRecordController.getChronicDesease);
+
 module.exports = router;

@@ -20,5 +20,10 @@ router.get(
   [auth.authToken],
   allergiesRecordController.getAllergiesById
 );
+router.get(
+  "/",
+  [auth.authToken],
+  allergiesRecordController.getAllergies
+);
 
 module.exports = router;
