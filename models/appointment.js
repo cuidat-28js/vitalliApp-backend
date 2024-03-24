@@ -39,6 +39,12 @@ const appointmentSchema = new Schema(
     adress: {
       type: String,
     },
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
   },
   {
     versionKey: false,

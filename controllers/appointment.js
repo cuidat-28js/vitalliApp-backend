@@ -45,6 +45,8 @@ module.exports = {
         label,
         diagnosis,
         adress,
+        lat,
+        lng,
         medicine,
         img_recipe,
       } = req.body;
@@ -59,6 +61,8 @@ module.exports = {
         diagnosis,
         label,
         adress,
+        lat,
+        lng,
         medicine,
         img_recipe,
       });
